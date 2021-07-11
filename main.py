@@ -287,8 +287,8 @@ def decompile_fern_flower(decompiled_version, version, side, quiet, force):
         path = path.resolve()
         fernflower = fernflower.resolve()
         subprocess.run(['java',
-                        '-Xmx4G',
-                        '-Xms1G',
+                        '-Xmx16G',
+                        '-Xms4G',
                         '-jar', fernflower.__str__(),
                         '-hes=0',  # hide empty super invocation deactivated (might clutter but allow following)
                         '-hdc=0',  # hide empty default constructor deactivated (allow to track)
@@ -296,7 +296,7 @@ def decompile_fern_flower(decompiled_version, version, side, quiet, force):
                         '-ren=1',  # rename ambiguous activated
                         '-lit=1',  # output numeric literals
                         '-asc=1',  # encode non-ASCII characters in string and character
-                        '-log=WARN',
+                        '-log=DEBUG',
                         path.__str__(), f'./src/{decompiled_version}/{side}'
                         ], check=True, capture_output=quiet)
         if not quiet:
